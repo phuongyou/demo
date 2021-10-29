@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> 
+    <title>Document</title>
+</head>
+<body>
+   <div id="toast">
+    
+   </div>
+    <div>
+    <div onclick="btnSuccess();" class="btn btn--success">Success</div>
+    <div onclick="btnError();" class="btn btn--error">Error</div>
+    <div onclick="btnWarning();" class="btn btn--warning">Warning</div>
+
+    </div>
+
+ 
+
+</div>
+  
+    <script>
+        function toast({  
+            title= '',
+            msg='',
+            type='',
+            timeOut= 3000}){
+
+            const toastId = document.getElementById('toast')
+            const toast = document.createElement('div')
+            toast.classList.add('toast',`toast--${type}`)
+            toast.style.animation = 'slideSmooth 0.3s ease ,fadeOut linear 1s 3s forwards'
+            
+            const exit =  setTimeout(() => {
+                toastId.removeChild(toast)
+            },timeOut + 1000);
+
+
+
+           toast.onclick = function(e){
+                if(e.target.closest('.toast__close')){
+                     toastId.removeChild(toast)
+                     clearTimeout(exit)
+                }
+           }
+
+
+
+            const icons = {
+                success:'fas fa-check-circle',
+                error:'fas fa-exclamation-circle',
+                warning:'fas fa-exclamation-triangle'
+            }
+
+            const icon = icons[type]
+
+            toast.innerHTML = `
+                 <div class="toast__icon">
+                <i class="${icon}"></i>
+                </div>
+                <div class="toast__body">
+                <h2 class="toast__title">${title}</h2>
+                    <p class="toast__msg">${msg}</p>
+                </div>
+                <div class="toast__close">
+                    <i class="fas fa-times"></i>
+                </div>
+            
+            `
+
+            toastId.appendChild(toast)
+
+           
+        }
+
+
+      
+
+
+        function btnSuccess(){
+            toast({
+            title: 'Success',
+            msg:'đang ki thanh cong',
+            type:'success',
+            timeOut: 3000
+        })
+
+        }
+        function btnError(){
+            toast({
+            title: 'Error',
+            msg:'đang ki thanh cong',
+            type:'error',
+            timeOut: 3000
+        })
+
+        }
+        function btnWarning(){
+            toast({
+            title: 'Warning',
+            msg:'đang ki thanh cong',
+            type:'warning',
+            timeOut: 3000
+        })
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // function toast({title = '',msg = '',status ='',time = 3000}){
+        //     const toasts = document.getElementById('toast')
+        //    if(toasts){
+        //     const toast = document.createElement('div')
+        //     const timeOut = time/1000
+
+
+        //     const autoRemoveId =  setTimeout(() => {
+        //         toasts.removeChild(toast)
+        //     }, time + 1000);
+
+        //     toast.onclick = function(e){
+        //         if(e.target.closest('.toast__close')){
+        //             toasts.removeChild(toast)
+        //             clearTimeout(autoRemoveId)
+        //         }
+        //     }
+
+        //     toast.classList.add('toast',`toast--${status}`)
+        //     toast.style.animation = `slideSmooth ease 0.3s, fadeOut linear 1s ${timeOut}s forwards`
+        //     const icons = {
+        //         success:'fas fa-check-circle',
+        //         error:'fas fa-exclamation-circle',
+        //         warning:'fas fa-exclamation-triangle'
+        //     }
+           
+        //     const icon = icons[status]
+            
+        //     toast.innerHTML = `
+        //         <div class="toast__icon">
+        //         <i class="${icon}"></i>
+        //         </div>
+        //         <div class="toast__body">
+        //         <h2 class="toast__title">${title}</h2>
+        //             <p class="toast__msg">${msg}</p>
+        //         </div>
+        //         <div class="toast__close">
+        //             <i class="fas fa-times"></i>
+        //         </div>
+        //     `   
+            
+        //     toasts.appendChild(toast)
+            
+          
+        //    }
+
+        // }
+
+        
+        // function btnSuccess(){
+        //     toast({
+        //     title: 'Success',
+        //     msg:'Success generation of the web’favorite icon',
+        //     status:'success',
+        //     time: 3000
+        // })
+        // }
+        // function btnError(){
+        //     toast({
+        //     title: 'Error',
+        //     msg:'Error generation of the web’favorite icon',
+        //     status:'error',
+        //     time: 3000
+        // })
+        // }
+        // function btnWarning(){
+        //     toast({
+        //     title: 'Warning',
+        //     msg:'Warning generation of the web’favorite icon',
+        //     status:'warning',
+        //     time: 3000
+        // })
+        // }
+    </script>
+
+
+
+</div>
+    
+</body>
+</html>
